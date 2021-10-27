@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react'
 import myEpicNFT from "../utilities/MyEpicNFT.json"
+import Images from './Images';
 
 function Main() {
     const [currentAccount, setCurrentAccount] = useState("");
@@ -86,25 +87,27 @@ function Main() {
 
     // We conditialnal render if wallet is connected or not
     return (
-      <main className="flex flex-col flex-1 items-center w-full text-center">
-        <h1 className="m-4  text-6xl leading-relaxed font-bold">
-          Welcome to <p className="bg-gradient-to-r from-yellow-400 to-red-600 text-transparent bg-clip-text text-6xl leading-relaxed">Egyptian NFT's!</p>
+      <main className="w-full text-center">
+        <h1 className="text-6xl font-bold">
+          Welcome to <p className="bg-gradient-to-r from-yellow-400 to-red-400 text-transparent bg-clip-text text-6xl leading-relaxed">Egyptian NFT's!</p>
         </h1>
 
         <div className="p-4 font-bold text-xl">
             <p>Each unique. Each beutiful.</p>
-            <p>Discover your NFT today!</p>
         </div>
 
+        <Images />
+
         {currentAccount === "" ? (
-        <button onClick={connectWallet} className="m-4 p-4 bg-gradient-to-r from-yellow-400 to-red-600 text-2xl font-bold rounded">
+        <button onClick={connectWallet} className="mt-16 w-2/6 p-4 bg-gradient-to-r from-yellow-400 to-red-600 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
             Connect Wallet!
         </button>
         ) : (
-        <button onClick={askContractToMintNFT} className="m-4 p-4 bg-gradient-to-r from-purple-700 to-blue-700 text-2xl font-bold rounded">
+        <button onClick={askContractToMintNFT} className="mt-16 w-2/6 p-4 bg-gradient-to-r from-purple-700 to-blue-700 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
             Mint NFT!
         </button> 
         )}
+
       </main>
     );
 }
