@@ -4,6 +4,11 @@ const main = async () => {
   await nftContract.deployed();
   console.log("Contract deployed to:", nftContract.address);
 
+  //Call the function desired NFT and fake an answer "Amun", "Ra", "Seshat", "Tutankhamun"
+  let abc = await nftContract.setDesiredNFT("Seshat")
+  // Wait for a selection
+  await abc.wait()
+
   //Call the function
   let txn = await nftContract.makeAnEpicNFT();
 

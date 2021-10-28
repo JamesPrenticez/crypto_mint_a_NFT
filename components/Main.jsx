@@ -1,10 +1,14 @@
 import { ethers } from 'ethers';
 import { useEffect, useState } from 'react'
 import myEpicNFT from "../utilities/MyEpicNFT.json"
-import Images from './Images';
+import egyptianNFT from "../utilities/EgyptianNFT.json"
 
 function Main() {
+    const data = ["Amun", "Ra", "Seshat", "Tutankhamun"]
+
     const [currentAccount, setCurrentAccount] = useState("");
+    const [loggedMessage, setLoggedMessage] = useState("Go on connect your wallet!");
+    const [selectedNFT, setSelectedNFT] = useState("");
     
     useEffect(() => {
         checkIfWalletIsConnected()
@@ -51,11 +55,21 @@ function Main() {
             
             // Set State please?
             setCurrentAccount(accounts[0])
-
+            let message = "Cool your've connected your wallet - please select the NFT you would like to mint!"
+            setLoggedMessage(message)
+            // Setup Event Listener
+            setupEventListener()
         } catch(error){
             console.log(error)
         }
     }
+    // Select the NFT to mint
+    const selectWhichNFT = async (NFT) => {
+        setSelectedNFT(NFT)
+        let message = `Awsome you have selected ${NFT} - If your happy with your selection - go ahead and mint your NFT!`
+        setLoggedMessage(message)
+    }
+
 
     // Request the contract
     const askContractToMintNFT = async () => {
@@ -68,6 +82,11 @@ function Main() {
                     const provider = new ethers.providers.Web3Provider(ethereum)
                     const signer = provider.getSigner()
                     const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNFT.abi, signer)
+                    const selectNFT = contract.methods.setDesiredNFT(NFT).call()
+                    
+                    selectNFT.then((res) => {
+                        console.log(res)
+                    })
 
                     console.log("Going to pop wallet now to pay gas...")
                     let nftTxn = await connectedContract.makeAnEpicNFT();
@@ -82,7 +101,36 @@ function Main() {
             } catch (error){
                 console.log(error)
             }
-    }
+        }
+        
+        // Notify user of there new address
+        const setupEventListener = async () => {
+            try{
+                // Most of this looks the same as our function askContractToMintNft
+                const { ethereum } = window;
+                
+                // Same stuff again
+                if (ethereum){
+                    const provider = new ethers.providers.Web3Provider(ethereum)
+                    const signer = provider.getSigner();
+                    const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, egyptianNFT.abi, sginer)
+                
+                    // THIS IS THE MAGIC SAUCE
+                    // This will essentially "capture our event when our contract throws it"
+                    connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
+                        console.log(from, tokenId.toNumber())
+                        let message = `Hey there! We've minted your NFT. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: <https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}>`
+                        setLoggedMessage(message)
+                    });
+                    console.log("Setup event listener!")
+                } else {
+                    console.log("Ethereum object doesn't exist");
+                } 
+            } catch (error){
+                console.log(error)
+            }
+        }
+        
 
 
     // We conditialnal render if wallet is connected or not
@@ -96,16 +144,34 @@ function Main() {
             <p>Each unique. Each beutiful.</p>
         </div>
 
-        <Images />
+        {/*Obviously should map this*/}
+        <div className="grid grid-cols-4 divide-x divide-yellow-400 justify-items-center ">
+            <div onClick={() => selectWhichNFT(`${data[0]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
+                <img  className="h-auto w-2/6" src={`/img/svg/${data[0]}.svg`} />
+            </div>
+            <div onClick={() => selectWhichNFT(`${data[1]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
+                <img className="h-auto w-2/6" src={`/img/svg/${data[1]}.svg`} />
+            </div>
+            <div onClick={() => selectWhichNFT(`${data[2]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
+                <img className="h-auto w-2/6" src={`/img/svg/${data[2]}.svg`} />
+            </div>
+            <div onClick={() => selectWhichNFT(`${data[3]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
+                <img className="h-auto w-2/6" src={`/img/svg/${data[3]}.svg`} />
+            </div>
+        </div>
+
+        <p className="text-xl mt-4 p-4">{loggedMessage}</p>
 
         {currentAccount === "" ? (
-        <button onClick={connectWallet} className="mt-16 w-2/6 p-4 bg-gradient-to-r from-yellow-400 to-red-600 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
+        <button onClick={connectWallet} className="mt-4 w-2/6 p-4 bg-gradient-to-r from-yellow-400 to-red-600 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
             Connect Wallet!
         </button>
         ) : (
-        <button onClick={askContractToMintNFT} className="mt-16 w-2/6 p-4 bg-gradient-to-r from-purple-700 to-blue-700 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
+        <>
+        <button onClick={askContractToMintNFT} className="mt-4 w-2/6 p-4 bg-gradient-to-r from-purple-700 to-blue-700 text-2xl font-bold rounded transform transition-all hover:scale-125 duration-500 ease-out">
             Mint NFT!
         </button> 
+        </>
         )}
 
       </main>

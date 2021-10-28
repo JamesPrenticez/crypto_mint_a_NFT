@@ -6,3 +6,7 @@
 - (SVG View)[https://www.svgviewer.dev/]
 - (Rinkeby Fauset)[https://faucet.rinkeby.io/] get 'fake' ether for use on the testnet
 - (Alchemy)[https://www.alchemy.com/] broadcast transactions to miners
+
+### Deploy Contract
+- Locally ``` npx hardhat run scripts/run.js ```
+- TestNet ``` npx hardhat run scripts/deploy.js --network rinkeby ```
