@@ -4,7 +4,7 @@ import myEpicNFT from "../utilities/MyEpicNFT.json"
 import egyptianNFT from "../utilities/EgyptianNFT.json"
 
 function Main() {
-    const data = ["Amun", "Ra", "Seshat", "Tutankhamun"]
+    const data = ["Amun", "Ra", "Seshat", "Tutankhamun", "Hapi"]
 
     const [currentAccount, setCurrentAccount] = useState("");
     const [loggedMessage, setLoggedMessage] = useState("Go on connect your wallet!");
@@ -145,18 +145,21 @@ function Main() {
         </div>
 
         {/*Obviously should map this*/}
-        <div className="grid grid-cols-4 divide-x divide-yellow-400 justify-items-center ">
-            <div onClick={() => selectWhichNFT(`${data[0]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
-                <img  className="h-auto w-2/6" src={`/img/svg/${data[0]}.svg`} />
+        <div className="grid grid-cols-5 divide-x divide-yellow-400 justify-items-center ">
+            <div onClick={() => selectWhichNFT(`${data[0]}`)} className="h-full w-full grid justify-items-center items-end hover:cursor-pointer hover:bg-gradient-radial from-yellow-400 to-red-400">
+                <img  className="h-auto w-2/6 filter hover:drop-shadow-red" src={`/img/svg/${data[0]}.svg`} />
             </div>
-            <div onClick={() => selectWhichNFT(`${data[1]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
-                <img className="h-auto w-2/6" src={`/img/svg/${data[1]}.svg`} />
+            <div onClick={() => selectWhichNFT(`${data[1]}`)} className="h-full w-full grid justify-items-center items-end hover:cursor-pointer hover:bg-gradient-radial from-yellow-400 to-red-400">
+                <img className="h-auto w-2/6 filter hover:drop-shadow-yellow" src={`/img/svg/${data[1]}.svg`} />
             </div>
-            <div onClick={() => selectWhichNFT(`${data[2]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
-                <img className="h-auto w-2/6" src={`/img/svg/${data[2]}.svg`} />
+            <div onClick={() => selectWhichNFT(`${data[2]}`)} className="h-full w-full grid justify-items-center items-end hover:cursor-pointer hover:bg-gradient-radial from-yellow-400 to-red-400">
+                <img className="h-auto w-2/6 filter hover:drop-shadow-pink" src={`/img/svg/${data[2]}.svg`} />
             </div>
-            <div onClick={() => selectWhichNFT(`${data[3]}`)} className="h-full w-full grid justify-items-center items-end hover:bg-white hover:cursor-pointer">
-                <img className="h-auto w-2/6" src={`/img/svg/${data[3]}.svg`} />
+            <div onClick={() => selectWhichNFT(`${data[3]}`)} className="h-full w-full grid justify-items-center items-end hover:cursor-pointer hover:bg-gradient-radial from-yellow-400 to-red-400">
+                <img className="h-auto w-2/6 filter hover:drop-shadow-green" src={`/img/svg/${data[3]}.svg`} />
+            </div>
+            <div onClick={() => selectWhichNFT(`${data[4]}`)} className="h-full w-full grid justify-items-center items-end hover:cursor-pointer hover:bg-gradient-radial from-yellow-400 to-red-400">
+                <img className="h-auto w-2/6 filter hover:drop-shadow-blue" src={`/img/svg/${data[4]}.svg`} />
             </div>
         </div>
 

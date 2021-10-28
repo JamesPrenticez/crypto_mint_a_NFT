@@ -11,8 +11,14 @@
 - Locally ``` npx hardhat run scripts/run.js ```
 - TestNet ``` npx hardhat run scripts/deploy.js --network rinkeby ```
 
-- ![#39ff14](https://via.placeholder.com/15/39ff14/000000?text=+) #39ff14 - Terminal Green
-- ![#DA14FF](https://via.placeholder.com/15/DA14FF/000000?text=+) #DA14FF - Hot Pink
-- ![#FF1338](https://via.placeholder.com/15/FF1338/000000?text=+) #FF1338 - Killer Red
-- ![#1339FF](https://via.placeholder.com/15/1339FF/000000?text=+) #1339FF - Navy Blue
-- ![#9F00FF](https://via.placeholder.com/15/9F00FF/000000?text=+) #9F00FF - Powerful Purple
+- ![#FF0000](https://via.placeholder.com/15/FF0000/000000?text=+) #FF0000 - red
+- ![#00FF00](https://via.placeholder.com/15/00FF00/000000?text=+) #00FF00 - green
+- ![#0000FF](https://via.placeholder.com/15/0000FF/000000?text=+) #0000FF - blue
+- ![#FF00FF](https://via.placeholder.com/15/FF00FF/000000?text=+) #FF00FF - pink
+- ![#FFFF00](https://via.placeholder.com/15/9F00FF/000000?text=+) #FFFF00 - yellow
+
+#FF0000 - red
+#00FF00 - green
+#0000FF - blue
+#FF00FF - pink
+#FFFF00 - yellow

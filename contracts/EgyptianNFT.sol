@@ -43,7 +43,7 @@ contract EgyptianNFT is ERC721URIStorage {
   string[] firstWords = [""];
   string[] secondWords = [""];
   string[] thirdWords = [""];
-  string[] color = ["#1339FF", "#9F00FF", "#FF1338", "#DA14FF", "#39ff14"];
+  string[] color = ["#FF0000", "#00FF00", "#0000FF", "#FF00FF", "#FFFF00"];
 
   // I tired to store this in a library however you can't store []'s =(
   // Tutankhamun
@@ -63,6 +63,11 @@ contract EgyptianNFT is ERC721URIStorage {
 
   // Amun
   string[] amunFirst = ["Amun"];
+  string[] amunSecond = ["Skilled", "Intellectual", "Adept", "Expert", "Specialist", "Influential", "Novice", "Bold", "Loved", "Admired", "Feared", "Friendly", "Loyal", "Stupid", "Mighty", "Commanding", "Vigorous", "Formidable", "Weak", "Cowardly", "Sick", "Frail", "Incompetent", "Pathetic", "Dying"];
+  string[] amunThird = ["Scribe", "Baker", "Farmer", "Priest", "Doctor", "Craftsman", "Merchant", "Herbalist", "Thief", "Captian", "Major", "Lieutenant", "Recruit", "Sailor", "Traveller", "Ship-maker", "Stableman" ];
+
+  //Hapi
+  string[] amunFirst = ["Hapi"];
   string[] amunSecond = ["Skilled", "Intellectual", "Adept", "Expert", "Specialist", "Influential", "Novice", "Bold", "Loved", "Admired", "Feared", "Friendly", "Loyal", "Stupid", "Mighty", "Commanding", "Vigorous", "Formidable", "Weak", "Cowardly", "Sick", "Frail", "Incompetent", "Pathetic", "Dying"];
   string[] amunThird = ["Scribe", "Baker", "Farmer", "Priest", "Doctor", "Craftsman", "Merchant", "Herbalist", "Thief", "Captian", "Major", "Lieutenant", "Recruit", "Sailor", "Traveller", "Ship-maker", "Stableman" ];
 
@@ -129,6 +134,12 @@ contract EgyptianNFT is ERC721URIStorage {
       firstWords = tutankhamunFirst;
       secondWords = tutankhamunSecond;
       thirdWords = tutankhamunThird;
+    }
+    else if (keccak256(bytes(desiredNFT)) == keccak256(bytes("Hapi"))){
+      p2 = Images.Hapi;
+      firstWords = hapiFirst;
+      secondWords = hapiSecond;
+      thirdWords = hapiThird;
     }
     else { 
       return;
