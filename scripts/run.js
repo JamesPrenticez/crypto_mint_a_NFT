@@ -5,7 +5,7 @@ const main = async () => {
   console.log("Contract deployed to:", nftContract.address);
 
   //Call the function desired NFT and fake an answer "Amun", "Ra", "Seshat", "Tutankhamun"
-  let abc = await nftContract.setDesiredNFT("Seshat")
+  let abc = await nftContract.setDesiredNFT("Tutankhamun")
   // Wait for a selection
   await abc.wait()
 
