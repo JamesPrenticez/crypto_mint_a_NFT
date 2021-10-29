@@ -17,3 +17,6 @@ Thats why I use events here. I’m able to emit an event on the contract and the
 Be sure to read more on events (here)[https://docs.soliditylang.org/en/v0.4.21/contracts.html#events].
 
 ### Web3.js contract methods
+
+Contract deployed to: 0xFD8Dde5fB524590D3d67BD858e50512Af3194Fea
+https://testnets.opensea.io/assets/0xfd8dde5fb524590d3d67bd858e50512af3194fea/0

@@ -18,9 +18,9 @@ contract EgyptianNFT is ERC721URIStorage {
   // Magic given to us by OpenZeppelin to help us keep track of tokenIds.
   using Counters for Counters.Counter;
   Counters.Counter private _tokenIds;
+  string desiredNFT = "Tutankhamun";
 
-  string desiredNFT = "";
-  string svgP1 = "<svg width='300' height='450'><defs><radialGradient id='RadialGradient' cx='0.5' cy='0.5' r='0.5'><stop offset='0%' stop-color='yellow'/><stop offset='100%' stop-color='orange'/></radialGradient><clipPath id='dropShadow'></clipPath></defs><rect width='100%' height='100%' fill='url(#RadialGradient)'/><image width='250' height='350' y='25' href='";
+  string svgP1 = "<svg xmlns='http://www.w3.org/2000/svg' width='300' height='450'><defs><radialGradient id='RadialGradient' cx='0.5' cy='0.5' r='0.5'><stop offset='0%' stop-color='yellow'/><stop offset='100%' stop-color='orange'/></radialGradient><clipPath id='dropShadow'></clipPath></defs><rect width='100%' height='100%' fill='url(#RadialGradient)'/><image width='250' height='350' y='25' href='";
   // P2 "https://i.imgur.com/WGc6zQS.png"
   string svgP3 = "' filter= 'drop-shadow(0px 0px 10px "; 
   // P4 #9F00FF random color
@@ -30,15 +30,15 @@ contract EgyptianNFT is ERC721URIStorage {
   event EgyptianNFTMinted(address sender, uint256 tokenId);
 
   // We need to pass the name of our NFTs token and it's symbol.
-  constructor() ERC721 ("Ancient Egyiptian NFTs", "SLURP") {
+  constructor() ERC721 ("Ancient Egyiptian NFTs v1", "EPIC") {
     console.log("This is my NFT contract. Woah!");
   }
 
-  function setDesiredNFT(string memory NFT) public returns (string memory){
-    desiredNFT = NFT;
-    console.log(desiredNFT);
-    return desiredNFT;
-  }
+  // function setDesiredNFT(string memory NFT) public returns (string memory){
+  //   desiredNFT = NFT;
+  //   console.log(desiredNFT);
+  //   return desiredNFT;
+  // }
 
   string[] firstWords = [""];
   string[] secondWords = [""];
@@ -67,9 +67,9 @@ contract EgyptianNFT is ERC721URIStorage {
   string[] amunThird = ["Scribe", "Baker", "Farmer", "Priest", "Doctor", "Craftsman", "Merchant", "Herbalist", "Thief", "Captian", "Major", "Lieutenant", "Recruit", "Sailor", "Traveller", "Ship-maker", "Stableman" ];
 
   //Hapi
-  string[] amunFirst = ["Hapi"];
-  string[] amunSecond = ["Skilled", "Intellectual", "Adept", "Expert", "Specialist", "Influential", "Novice", "Bold", "Loved", "Admired", "Feared", "Friendly", "Loyal", "Stupid", "Mighty", "Commanding", "Vigorous", "Formidable", "Weak", "Cowardly", "Sick", "Frail", "Incompetent", "Pathetic", "Dying"];
-  string[] amunThird = ["Scribe", "Baker", "Farmer", "Priest", "Doctor", "Craftsman", "Merchant", "Herbalist", "Thief", "Captian", "Major", "Lieutenant", "Recruit", "Sailor", "Traveller", "Ship-maker", "Stableman" ];
+  string[] hapiFirst = ["Hapi"];
+  string[] hapiSecond = ["Skilled", "Intellectual", "Adept", "Expert", "Specialist", "Influential", "Novice", "Bold", "Loved", "Admired", "Feared", "Friendly", "Loyal", "Stupid", "Mighty", "Commanding", "Vigorous", "Formidable", "Weak", "Cowardly", "Sick", "Frail", "Incompetent", "Pathetic", "Dying"];
+  string[] hapiThird = ["Scribe", "Baker", "Farmer", "Priest", "Doctor", "Craftsman", "Merchant", "Herbalist", "Thief", "Captian", "Major", "Lieutenant", "Recruit", "Sailor", "Traveller", "Ship-maker", "Stableman" ];
 
   // I create a function to randomly pick a word from each array.
   function pickRandomFirstWord(uint256 tokenId) public view returns (string memory) {
@@ -107,7 +107,6 @@ contract EgyptianNFT is ERC721URIStorage {
      // Get the current tokenId, this starts at 0.
     uint256 newItemId = _tokenIds.current();
     string memory p2;
-
     // Could pull this out into a sperate function just like setWordsToUse
     //most retared thing ever convert string to a hash so we can check equallity keccak256(bytes(a)) == keccak256(bytes(b)
     //https://ethereum.stackexchange.com/questions/30912/how-to-compare-strings-in-solidity
@@ -169,10 +168,9 @@ contract EgyptianNFT is ERC721URIStorage {
                     '{"name": "',
                     // We set the title of our NFT as the generated word.
                     combinedWord,
-                    '", "description": "A highly acclaimed collection of Egyptian NTFs v1."',
-                    '"image": "data:image/svg+xml;base64,',
+                    '", "description": "A highly acclaimed collection of Wepon NTFs.", "image": "data:image/svg+xml;base64,',
                     // We add data:image/svg+xml;base64 and then append our base64 encode our svg.
-                    Base64.encode(bytes(finalSVG)), 
+                    Base64.encode(bytes(finalSVG)),
                     '"}'
                 )
             )

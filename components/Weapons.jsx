@@ -65,6 +65,7 @@ function Main() {
     }
     // Select the NFT to mint
     const selectWhichNFT = async (NFT) => {
+        // This is just state
         setSelectedNFT(NFT)
         let message = `Awsome you have selected ${NFT} - If your happy with your selection - go ahead and mint your NFT!`
         setLoggedMessage(message)
@@ -74,7 +75,7 @@ function Main() {
     // Request the contract
     const askContractToMintNFT = async () => {
         //Be sure to change this variable to the deployed contract address of your latest deployed contract
-        const CONTRACT_ADDRESS = "0x25428A51dc7b4b61882382b9D20Af76114189A27"
+        const CONTRACT_ADDRESS = "0xFD8Dde5fB524590D3d67BD858e50512Af3194Fea"
             try{
                 const { ethereum } = window;
 
@@ -82,11 +83,6 @@ function Main() {
                     const provider = new ethers.providers.Web3Provider(ethereum)
                     const signer = provider.getSigner()
                     const connectedContract = new ethers.Contract(CONTRACT_ADDRESS, myEpicNFT.abi, signer)
-                    const selectNFT = contract.methods.setDesiredNFT(NFT).call()
-                    
-                    selectNFT.then((res) => {
-                        console.log(res)
-                    })
 
                     console.log("Going to pop wallet now to pay gas...")
                     let nftTxn = await connectedContract.makeAnEpicNFT();
@@ -105,6 +101,7 @@ function Main() {
         
         // Notify user of there new address
         const setupEventListener = async () => {
+            const CONTRACT_ADDRESS = "0xFD8Dde5fB524590D3d67BD858e50512Af3194Fea"
             try{
                 // Most of this looks the same as our function askContractToMintNft
                 const { ethereum } = window;
@@ -117,7 +114,7 @@ function Main() {
                 
                     // THIS IS THE MAGIC SAUCE
                     // This will essentially "capture our event when our contract throws it"
-                    connectedContract.on("NewEpicNFTMinted", (from, tokenId) => {
+                    connectedContract.on("weaponNFTMinted", (from, tokenId) => {
                         console.log(from, tokenId.toNumber())
                         let message = `Hey there! We've minted your NFT. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: <https://testnets.opensea.io/assets/${CONTRACT_ADDRESS}/${tokenId.toNumber()}>`
                         setLoggedMessage(message)

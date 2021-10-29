@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Main from '../components/Main'
+import Weapons from '../components/Weapons'
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
-      <Main />
+      <Weapons />
 
     </div>
   )

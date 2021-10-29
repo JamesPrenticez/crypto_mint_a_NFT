@@ -22,3 +22,9 @@
 #0000FF - blue
 #FF00FF - pink
 #FFFF00 - yellow
+
+Weapons:
+0xaC2315d5382FbcaB78298208412f5D5c181BF87c
+
+Egyptians:
+0x7e6acc661dbFBA1F28B34aF02879CfbEf6949A54
